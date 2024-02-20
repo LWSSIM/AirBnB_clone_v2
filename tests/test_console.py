@@ -88,5 +88,6 @@ class TestConsole(unittest.TestCase):
             except ValueError:
                 self.fail("Output is not a valid UUID")
 
+
 if __name__ == "__main__":
-        unittest.main()
+    unittest.main()

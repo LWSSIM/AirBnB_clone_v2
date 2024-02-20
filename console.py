@@ -141,8 +141,8 @@ class HBNBCommand(cmd.Cmd):
                 if re.search(r"^.*?=.*?$", param):
                     param = param.split("=")
                     if re.search(r'^"(.*?)"$', param[1]):
-                        param[1].split('"')
-                        param[1].replace("_", " ")
+                        param[1] = param[1].strip('"')
+                        param[1] = param[1].replace("_", " ")
                         setattr(new_instance, param[0], str(param[1]))
                     else:
                         setattr(new_instance, param[0], eval(param[1]))
@@ -153,7 +153,8 @@ class HBNBCommand(cmd.Cmd):
     def help_create(self):
         """Help information for the create method"""
         print("Creates a class of any type")
-        print("[Usage]: create <className>\n")
+        print("[Usage]: create <Class name> <param 1> <param 2> <param 3>...")
+        print("Param syntax: <key name>=<value>\n")
 
     def do_show(self, args):
         """Method to show an individual object"""

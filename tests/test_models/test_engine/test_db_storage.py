@@ -79,8 +79,12 @@ class test_DBStorage(unittest.TestCase):
 
     def test_module_docstring(self):
         """Test for the db_storage.py module docstring"""
-        self.assertIsNot(db_storage.__doc__, None, "db_storage.py needs a docstring")
-        self.assertTrue(len(db_storage.__doc__) >= 1, "db_storage.py needs a docstring")
+        self.assertIsNot(
+            db_storage.__doc__, None, "db_storage.py needs a docstring"
+        )
+        self.assertTrue(
+            len(db_storage.__doc__) >= 1, "db_storage.py needs a docstring"
+        )
 
     def tearDown(self):
         """Remove storage file at end of tests"""
@@ -157,8 +161,11 @@ class test_DBStorage(unittest.TestCase):
         session.add_all(all_entries)
         session.commit()
 
-        res_user = session.query(User).filter(User.first_name == "hazel").first()
-
+        res_user = (
+            session.query(User).
+            filter(User.first_name == "hazel").
+            first()
+        )
         self.assertIsNotNone(res_user)
         self.assertEqual(res_user.first_name, "hazel")
         self.assertIsNotNone(res_user.places)

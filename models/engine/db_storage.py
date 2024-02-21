@@ -68,6 +68,15 @@ class DBStorage:
         if obj:
             self.__session.delete(obj)
 
+    def start_session(self):
+        """a public instance method used for starting a new session"""
+        self.__session = DBStorage.Session()
+
+    def stop_session(self):
+        """a public instance method used for ending a session"""
+        self.save()
+        self.__session.close()
+
     def reload(self):
         """create all tables in the database"""
         from models.amenity import Amenity

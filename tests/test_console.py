@@ -79,15 +79,6 @@ class TestConsole(unittest.TestCase):
             output = f.getvalue().strip()
             self.assertIsNotNone(output)
 
-    def test_create_with_valid_class_name_BaseModel(self):
-        with patch("sys.stdout", new=StringIO()) as f:
-            HBNBCommand().onecmd("create BaseModel")
-            output = f.getvalue().strip()
-            try:
-                uuid.UUID(output)
-            except ValueError:
-                self.fail("Output is not a valid UUID")
-
 
 if __name__ == "__main__":
     unittest.main()

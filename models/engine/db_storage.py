@@ -14,6 +14,7 @@ host = os.environ.get("HBNB_MYSQL_HOST")
 db = os.environ.get("HBNB_MYSQL_DB")
 env = os.environ.get("HBNB_ENV")
 
+
 class DBStorage:
     """Main class to handle ormand connection to db"""
 
@@ -85,4 +86,3 @@ class DBStorage:
             sessionmaker(bind=self.__engine, expire_on_commit=False)
         )
         self.__session = DBStorage.Session()
-

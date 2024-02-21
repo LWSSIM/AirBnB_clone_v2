@@ -10,12 +10,13 @@ import os
 
 stor_type = os.environ.get('HBNB_TYPE_STORAGE')
 
+
 class State(BaseModel, Base):
     """State class"""
 
-    if stor_type == 'db':
-        __tablename__ = "states"
+    __tablename__ = "states"
 
+    if stor_type == 'db':
         name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state")
     else:

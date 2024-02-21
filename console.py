@@ -4,7 +4,7 @@ import cmd
 import sys
 import re
 from models.base_model import BaseModel
-from models import storage
+from models.__init__ import storage
 from models.user import User
 from models.place import Place
 from models.state import State
@@ -226,16 +226,18 @@ class HBNBCommand(cmd.Cmd):
         """Shows all objects, or all objects of a class"""
         print_list = []
 
+        obj_all = storage.all()
+
         if args:
             args = args.split(" ")[0]  # remove possible trailing args
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in obj_all.items():
                 if k.split(".")[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in obj_all.items():
                 print_list.append(str(v))
 
         print(print_list)

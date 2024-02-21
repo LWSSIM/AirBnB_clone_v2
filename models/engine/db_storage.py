@@ -16,7 +16,7 @@ env = os.environ.get("HBNB_ENV")
 
 
 class DBStorage:
-    """Main class to handle ormand connection to db"""
+    """Main class to handle orm and connection to db"""
 
     __engine = None
     __session = None
@@ -26,7 +26,7 @@ class DBStorage:
         """init the engine + session"""
         self.__engine = create_engine(
             f"mysql+mysqldb://{user}:{pwd}@{host}/{db}", pool_pre_ping=True
-           )
+        )
         if env == "test":
             md = MetaData()
             md.drop_all(self.__engine, checkfirst=False)
@@ -43,36 +43,33 @@ class DBStorage:
         query_res = {}
 
         if cls is None:
-            cls_to_query = [User, State, City, Amenity, Place, Review]
+            cls_to_query = [State, City, User, Amenity, Place, Review]
+            res = []
+            for name in cls_to_query:
+                res.extend(self.__session.query(name).all())
         else:
-            cls_to_query = [cls]
+            res = self.__session.query(cls).all()
 
-        for name in cls_to_query:
-            objs = self.__session.query(name).all()
-            for obj in objs:
-                key = f"{name.__name__}.{obj.id}"
-                query_res[key] = obj
+        for obj in res:
+            key = f"{obj.to_dict()['__class__']}.{obj.id}"
+            query_res[key] = obj
         return query_res
 
     def new(self, obj):
-        """add the object to the current database session (self.__session)
-        """
+        """add the object to the current database session (self.__session)"""
         self.__session.add(obj)
 
     def save(self):
-        """commit all changes of the current database session
-        """
+        """commit all changes of the current database session"""
         self.__session.commit()
 
     def delete(self, obj=None):
-        """delete from the current database session obj if not None
-        """
+        """delete from the current database session obj if not None"""
         if obj:
             self.__session.delete(obj)
 
     def reload(self):
-        """create all tables in the database
-        """
+        """create all tables in the database"""
         from models.amenity import Amenity
         from models.city import City, Base
         from models.place import Place

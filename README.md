@@ -1,5 +1,8 @@
 # Fabric Deployment README
 
+![image](https://github.com/LWSSIM/AirBnB_clone_v2/assets/127129101/2e8996d6-ce8c-4249-a7a7-6051fd5cf077)
+
+
 ## Introduction
 This README provides a comprehensive guide on using Fabric for deploying code to a server, managing Nginx configuration, and executing commands both locally and remotely. Fabric is a Python library and command-line tool designed to simplify the process of remote administration and deployment tasks.
 

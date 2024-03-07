@@ -41,7 +41,7 @@ def do_deploy(archive_path):
         run("rm -fr /tmp/{}.tgz".format(arch_name))
 
         run(
-            "mv {}/{}/web_static/* {}/{}".format(
+            "mv -f {}/{}/web_static/* {}/{}".format(
                 data_pth, arch_name, data_pth, arch_name)
         )
 
@@ -54,25 +54,3 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
-
-
-@task
-def do_pack():
-    """gen .tgz
-
-    Return:
-        str: /path
-        null: fail
-    """
-
-    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    archive = "web_static_{}.tgz".format(timestamp)
-    path = "versions/{}".format(archive)
-
-    local("mkdir -p versions")
-    result = local("tar -czf {} web_static/".format(path))
-
-    if result is None:
-        return None
-    else:
-        return path

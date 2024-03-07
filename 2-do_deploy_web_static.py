@@ -34,14 +34,16 @@ def do_deploy(archive_path):
         run("mkdir -p {}/{}".format(data_pth, arch_name))
 
         run(
-            "tar -xzf /tmp/{}.tgz -C {}/{}/"
-        .format(arch_name, data_pth, arch_name))
+            "tar -xzf /tmp/{}.tgz -C {}/{}/".format(
+                arch_name, data_pth, arch_name)
+        )
 
         run("rm -fr /tmp/{}.tgz".format(arch_name))
 
         run(
-            "mv {}/{}/web_static/* {}/{}"
-        .format(data_pth, arch_name, data_pth, arch_name))
+            "mv {}/{}/web_static/* {}/{}".format(
+                data_pth, arch_name, data_pth, arch_name)
+        )
 
         run("rm -fr {}/{}/web_static".format(data_pth, arch_name))
 
@@ -52,7 +54,6 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
-
 
 
 @task

@@ -6,9 +6,8 @@ Usage: fab -f 2-do_deploy_web_static.py do_deploy:archive_path=path
 
 
 from fabric.decorators import task
-from fabric.api import local, put, get, env, run
-from os.path import exists
-from datetime import datetime
+from fabric.api import put, env, run
+import os
 
 
 env.hosts = ["54.237.2.143", "107.21.25.233"]
@@ -22,35 +21,21 @@ def do_deploy(archive_path):
         str: /path
         null: fail
     """
-    if not exists(archive_path):
-        return False
-
     try:
-        arch_name = archive_path.split("/")[-1].split(".")[0]
-        data_pth = "/data/web_static/releases"
+        if not os.path.exists(archive_path):
+            return False
+        with_ext = archive_path.split("/")[-1]
 
+        without_ext = archive_path.split("/")[-1].split(".")[0]
+        pth = "/data/web_static/releases/"
         put(archive_path, "/tmp/")
-
-        run("mkdir -p {}/{}".format(data_pth, arch_name))
-
-        run(
-            "tar -xzf /tmp/{}.tgz -C {}/{}/".format(
-                arch_name, data_pth, arch_name)
-        )
-
-        run("rm -fr /tmp/{}.tgz".format(arch_name))
-
-        run(
-            "mv -f {}/{}/web_static/* {}/{}".format(
-                data_pth, arch_name, data_pth, arch_name)
-        )
-
-        run("rm -fr {}/{}/web_static".format(data_pth, arch_name))
-
-        run("rm -fr /data/web_static/current")
-
-        run("ln -s {}/{} /data/web_static/current".format(data_pth, arch_name))
-
+        run("mkdir -p " + pth + without_ext)
+        run("tar -xzf /tmp/{} -C {}{}/".format(with_ext, pth, without_ext))
+        run("rm /tmp/{}".format(with_ext))
+        run("mv {1}{0}/web_static/* {1}{0}/".format(without_ext, pth))
+        run("rm -rf {}{}/web_static".format(pth, without_ext))
+        run("rm -rf /data/web_static/current")
+        run("ln -s {}{}/ /data/web_static/current".format(pth, without_ext))
         return True
     except Exception:
         return False

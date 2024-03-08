@@ -33,7 +33,7 @@ def do_deploy(archive_path):
         run("mkdir -p " + pth + without_ext)
         run("tar -xzf /tmp/{} -C {}{}/".format(with_ext, pth, without_ext))
         run("rm /tmp/{}".format(with_ext))
-        run("mv {1}{0}/web_static/* {1}{0}/".format(without_ext, pth))
+        run("mv {0}{1}/web_static/* {0}{1}/".format(pth, without_ext))
         run("rm -rf {}{}/web_static".format(pth, without_ext))
         run("rm -rf /data/web_static/current")
         run("ln -s {}{} /data/web_static/current".format(pth, without_ext))

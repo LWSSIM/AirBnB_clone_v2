@@ -6,7 +6,7 @@ Usage: fab -f 2-do_deploy_web_static.py do_deploy:archive_path=path
 
 
 from datetime import datetime
-from fabric.decorators import task
+from fabric.decorators import runs_once, task
 from fabric.api import put, env, run, local
 import os
 
@@ -52,7 +52,7 @@ def do_deploy(archive_path):
         return False
 
 
-@task
+@runs_once
 def do_pack():
     """gen .tgz
 

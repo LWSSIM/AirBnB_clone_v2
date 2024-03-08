@@ -5,8 +5,9 @@ Usage: fab -f 2-do_deploy_web_static.py do_deploy:archive_path=path
 """
 
 
+from datetime import datetime
 from fabric.decorators import task
-from fabric.api import put, env, run
+from fabric.api import put, env, run, local
 import os
 
 
@@ -39,3 +40,25 @@ def do_deploy(archive_path):
         return True
     except Exception:
         return False
+
+
+@task
+def do_pack():
+    """gen .tgz
+
+    Return:
+        str: /path
+        null: fail
+    """
+
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    archive = "web_static_{}.tgz".format(timestamp)
+    path = "versions/{}".format(archive)
+
+    local("mkdir -p versions")
+    result = local("tar --verbose -czf {} web_static/".format(path))
+
+    if result is None:
+        return None
+    else:
+        return path

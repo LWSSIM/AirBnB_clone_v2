@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
-# starts a Flask web application that listens on 0.0.0.0:5000
-# The routes:
-#   /: display "Hello HBNB!
-#   /hbnb: "HBNB"
-#   /c/<text>: display “C ” followed by the value of the text variable
-#   (replace underscore _ symbols with a space )
-# You must use the option strict_slashes=False in your route definition
+#!/usr/bin/python3
+"""starts a Flask web application that listens on 0.0.0.0:5000
+ The routes:
+   /: display "Hello HBNB!
+   /hbnb: "HBNB"
+   /c/<text>: display “C ” followed by the value of the text variable
+   (replace underscore _ symbols with a space )
+ You must use the option strict_slashes=False in your route definition
+"""
 
 
 from flask import Flask

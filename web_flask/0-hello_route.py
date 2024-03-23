@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """starts a Flask web application that listens on 0.0.0.0:5000
  The route /: display "Hello HBNB!"
  You must use the option strict_slashes=False in your route definition

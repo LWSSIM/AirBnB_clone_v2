@@ -16,8 +16,8 @@ app.url_map.strict_slashes = False
 @app.route('/cities_by_states')
 def cities_by_states():
     """display a HTML page: (inside the tag BODY)"""
-    states = storage.all(State)
-    states = states.values()
+    states = storage.all(State).values()
+    states = sorted(states, key=lambda state: state.name)
     return render_template('8-cities_by_states.html',
                            states=states)
 

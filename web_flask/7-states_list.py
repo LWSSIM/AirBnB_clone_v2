@@ -10,10 +10,9 @@ from models.state import State
 
 
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
 
-@app.route('/states_list')
+@app.route('/states_list', strict_slashes=False)
 def states_list():
     """display a HTML page: (inside the tag BODY)"""
     states = storage.all(State).values()
@@ -22,7 +21,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def teardown_session(error):
+def teardown(exception):
     storage.close()
 
 

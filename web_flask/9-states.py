@@ -70,7 +70,7 @@ def states(id=None):
         states = storage.all(State)
         _id = False
     return render_template('9-states.html', states=states,
-                            with_id=_id, not_found=not_found)
+                           with_id=_id, not_found=not_found)
 
 
 @app.teardown_appcontext

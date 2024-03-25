@@ -31,7 +31,7 @@ class DBStorage:
             md = MetaData()
             md.drop_all(self.__engine, checkfirst=False)
 
-    def all(self, cls=None):
+    def all(self, cls=None, id=None):
         """Query current db for all objs in cls"""
         from models.amenity import Amenity
         from models.city import City, Base
@@ -47,6 +47,12 @@ class DBStorage:
             res = []
             for name in cls_to_query:
                 res.extend(self.__session.query(name).all())
+        if id:
+            res = self.__session.query(cls).get(id)
+            if res is not None:
+                key = f"{res.to_dict()['__class__']}.{res.id}"
+                query_res[key] = res
+                return query_res
         else:
             res = self.__session.query(cls).all()
 
@@ -54,6 +60,7 @@ class DBStorage:
             key = f"{obj.to_dict()['__class__']}.{obj.id}"
             query_res[key] = obj
         return query_res
+
 
     def new(self, obj):
         """add the object to the current database session (self.__session)"""

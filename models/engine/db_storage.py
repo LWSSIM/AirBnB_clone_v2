@@ -53,6 +53,8 @@ class DBStorage:
                 key = f"{res.to_dict()['__class__']}.{res.id}"
                 query_res[key] = res
                 return query_res
+            else:
+                return None
         else:
             res = self.__session.query(cls).all()
 

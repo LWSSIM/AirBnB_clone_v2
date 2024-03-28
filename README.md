@@ -1,7 +1,5 @@
 # [Air BnB Project](https://github.com/LWSSIM/AirBnB_clone/blob/master/README.md)
 
-# Web flask + MySQL
-
 
 # Fabric Deployment README
 
@@ -124,3 +122,30 @@ server {
 ```
 
 In this example, requests to `http://example.com/files/` will be served from `/var/www/files/`, while requests to `http://example.com/images/` will be served from `/var/images/`.
+
+
+
+# Web flask + MySQL
+
+- In web_flask directory, you will find a simple web application that connects to a MySQL database. The application uses the Flask framework to create a simple web interface that allows users to view and add data to a MySQL database.
+- Templates are used to render HTML pages with dynamic content, and the application uses SQLAlchemy to interact with the MySQL database, using *Jinja2*.
+
+
+
+## Testing the Application
+
+- First, make sure you have the necessary dependencies installed by running the following command:
+```bash
+$ curl -o 100-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/100-hbnb.sql"
+$ cat 100-dump.sql | mysql -uroot -p
+```
+- The above is to dump the database into your MySQL server. You will need to have MySQL installed on your machine and have the necessary permissions to create databases and tables.
+
+- Flask web app:
+```bash
+$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.100-hbnb
+```
+- Run the application using the command above and visit http://localhost:5000 in your web browser to view the application.
+- You can change `100-hbnb` to any of the other Python files in the `web_flask` directory to test different parts of the application.
+ 
+for more information about the project, please visit the [README](https://github.com/LWSSIM/AirBnB_clone_v2/blob/master/web_flask/README.md)

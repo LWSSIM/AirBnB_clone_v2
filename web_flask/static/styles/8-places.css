@@ -33,6 +33,14 @@ article {
 	width: 100%;
 }
 
+.headline h2 {
+  display: flex;
+  text-align: left;
+  width: 80%;
+  margin-left: -20px;
+  font-size: 25px;
+}
+
 .price_by_night {
 	display: flex;
 	justify-content: center;
@@ -74,7 +82,7 @@ article {
 
 .user {
 	margin-top: 5px;
-	margin-bottom: 5px;	
+	margin-bottom: 5px;
 }
 
 .description {
@@ -90,12 +98,6 @@ h1 {
 	margin-left: 20px;
 	margin-bottom: 5px;
 	font-size: 30px;
-}
-
-article h2 {
-	font-size: 30px;
-	margin: 10px auto;
-	padding: 0px;
 }
 
 .guest_icon {

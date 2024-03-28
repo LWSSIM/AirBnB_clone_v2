@@ -23,14 +23,14 @@
 	vertical-align: middle;
 	height: 100%;
 	float: left;
-    width: 25%;
+  width: 25%;
 
 	line-height: 20px;
 }
 
 .popover {
-	list-style-type: none;
 	display: none;
+	list-style-type: none;
 	background-color: #FAFAFA;
 	width: 100%;
 
@@ -40,13 +40,15 @@
 
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
+  position: relative;
+  z-index: 1000;
 
   max-height: 300px;
-  overflow-y: auto;
+  overflow: auto;
 }
 
 .locations:hover .popover {
-	display: inline-block;
+	display: block;
 }
 
 .amenities:hover .popover {
@@ -58,9 +60,6 @@ ul {
 	padding: 0px;
 	padding-bottom: 20px;
 }
-
-li {
-}	
 
 h2 {
 	font-size: 16px;

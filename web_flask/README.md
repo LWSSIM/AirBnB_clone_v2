@@ -4,6 +4,11 @@
 
 This project aims to create a full-stack Airbnb clone using Flask, a lightweight and flexible Python web framework. Flask provides the necessary tools and libraries to build web applications efficiently, offering features for routing, template rendering, and interacting with databases like MySQL. This README.md serves as a guide to understanding Flask and implementing various functionalities within the project.
 
+- Everything is rendered from a template fetching database data, from filter drop downs to reviews!
+  
+![image](https://github.com/LWSSIM/AirBnB_clone_v2/assets/127129101/d48f5d46-3650-489c-984c-e9653a5a6fb8)
+
+
 ### What is a Web Framework?
 
 A web framework is a collection of libraries, tools, and conventions that simplifies the process of building web applications. It provides developers with a structured way to handle tasks such as routing URLs, rendering templates, managing sessions, and interacting with databases.
